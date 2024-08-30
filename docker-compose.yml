@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  spring-boot-app:
+    build:
+      context: .  # The context should be the directory containing your Dockerfile
+      dockerfile: Dockerfile
+    image: assignment
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/assignment
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Test123@
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: assignment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Test123@
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my-network
+
+volumes:
+  postgres_data:
+
+networks:
+  my-network:
