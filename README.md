@@ -7,7 +7,7 @@ This project is a Spring Boot application designed for managing the purchase of 
 ### Key Features
 - **Manage Item Details**: Track and manage items including name, unique code, quantity, packing type, and pack quantity.
 - **Unique Identifiers Generation**: Generate unique packet numbers and serial numbers for items.
-- **Task Queue and Notification**: Queue purchase tasks, process them sequentially, and notify stakeholders upon completion.
+- **Task Queue and Notification**: Queue purchase tasks, process them sequentially, and notify stakeholders upon completion(Email Notification).
 
 ### Tools, Libraries, Frameworks, and Technologies
 
