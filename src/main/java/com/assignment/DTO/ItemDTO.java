@@ -25,4 +25,14 @@ public class ItemDTO {
     @Min(value = 1, message = "Pack quantity must be at least 1")
     private Integer packQuantity;
 
+    public ItemDTO() {
+    }
+
+    public ItemDTO(String name, String uniqueCode, Integer quantity, String packingType, Integer packQuantity) {
+        this.name = name;
+        this.uniqueCode = uniqueCode;
+        this.quantity = quantity;
+        this.packingType = packingType;
+        this.packQuantity = packQuantity;
+    }
 }
