@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a Spring Boot application designed for managing the purchase of items in an organization. It enables users to handle multiple items in a single purchase, generating unique packet numbers and serial numbers for each item based on provided packing and quantity details. This system aims to streamline inventory management by automating the generation of unique identifiers and efficiently managing purchase processes.
+This project is a Spring Boot application designed for managing the purchase of items in an organization. It enables users to handle multiple items in a single purchase, generating unique packet numbers and serial numbers for each item based on provided packing and quantity details.
 
 ### Key Features
 - **Manage Item Details**: Track and manage items including name, unique code, quantity, packing type, and pack quantity.
