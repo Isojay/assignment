@@ -80,13 +80,13 @@ public class TaskScheduler implements ITaskScheduler {
                 ItemDTO itemDTO = taskQueue.take();
 
                 // Send notification that processing has started
-                notificationService.sendNotification("Purchase processing for item: " + itemDTO.getUniqueCode());
+                notificationService.sendNotification("Purchase processing for item: " + itemDTO.getUniqueCode(),itemDTO.getEmail());
 
                 // Perform the purchase processing
                 serviceCall(itemDTO);
 
                 // Send notification that processing has completed
-                notificationService.sendNotification("Purchase processed for item: " + itemDTO.getUniqueCode());
+                notificationService.sendNotification("Purchase processed for item: " + itemDTO.getUniqueCode(),itemDTO.getEmail());
             } catch (InterruptedException e) {
                 // Handle thread interruption
                 Thread.currentThread().interrupt();
@@ -94,6 +94,7 @@ public class TaskScheduler implements ITaskScheduler {
             } catch (Exception e) {
                 // Handle any other exceptions during processing
                 log.error("Error processing item: {}", e.getMessage());
+                throw new IllegalArgumentException(e.getMessage());
             }
         }
     }

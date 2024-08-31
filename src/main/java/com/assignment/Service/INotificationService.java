@@ -7,6 +7,6 @@ public interface INotificationService {
      *
      * @param message The content of the email to be sent.
      */
-    void sendNotification(String message);
+    void sendNotification(String message,String email);
 
 }

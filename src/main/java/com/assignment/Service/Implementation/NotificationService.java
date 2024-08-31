@@ -27,13 +27,16 @@ public class NotificationService implements INotificationService {
      *
      * @param message The content of the email to be sent.
      */
-    public void sendNotification(String message) {
+    public void sendNotification(String message,String email) {
         //Default recipient : "info.bijayshrestha@gmail.com" is set
-        sendNotification("info.bijayshrestha@gmail.com", message);
+        if (email == null) {
+            email = "info.bijayshrestha@gmail.com";
+        }
+        sendEmailNotification(email, message);
         log.info("Notification sent: {}", message);
     }
 
-    private void sendNotification(String sendTo, String message) {
+    private void sendEmailNotification(String sendTo, String message) {
         if (sendTo == null || sendTo.isEmpty()) {
             return;
         }

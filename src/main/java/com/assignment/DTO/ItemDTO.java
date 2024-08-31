@@ -1,5 +1,6 @@
 package com.assignment.DTO;
 
+import com.assignment.Entity.PackingType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,10 +21,12 @@ public class ItemDTO {
     @Min(value = 1, message = "Quantity must be at least 1")
     private Integer quantity;
 
-    private String packingType;
+    private PackingType packingType;
 
     @Min(value = 1, message = "Pack quantity must be at least 1")
     private Integer packQuantity;
+
+    private String email;
 
     public ItemDTO() {
     }
@@ -32,7 +35,7 @@ public class ItemDTO {
         this.name = name;
         this.uniqueCode = uniqueCode;
         this.quantity = quantity;
-        this.packingType = packingType;
+        this.packingType = PackingType.valueOf(packingType);
         this.packQuantity = packQuantity;
     }
 }

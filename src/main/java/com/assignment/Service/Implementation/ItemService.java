@@ -2,7 +2,6 @@ package com.assignment.Service.Implementation;
 
 import com.assignment.DTO.ItemDTO;
 import com.assignment.Entity.Item;
-import com.assignment.Entity.PackingType;
 import com.assignment.Repository.ItemRepository;
 import com.assignment.Service.IItemService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +36,7 @@ public class ItemService implements IItemService {
             item.setUniqueCode(itemDTO.getUniqueCode());
             item.setQuantity(itemDTO.getQuantity());
 
-            item.setPackingType(PackingType.valueOf(itemDTO.getPackingType()));
+            item.setPackingType(itemDTO.getPackingType());
             item.setPackQuantity(itemDTO.getPackQuantity());
 
             return itemRepository.save(item);
@@ -61,7 +60,7 @@ public class ItemService implements IItemService {
                 itemDTO.setName(item.getName());
                 itemDTO.setUniqueCode(item.getUniqueCode());
                 itemDTO.setQuantity(item.getQuantity());
-                itemDTO.setPackingType(item.getPackingType().name());
+                itemDTO.setPackingType(item.getPackingType());
                 itemDTO.setPackQuantity(item.getPackQuantity());
                 itemDTOs.add(itemDTO);
             }
