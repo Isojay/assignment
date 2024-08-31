@@ -1,18 +1,24 @@
-package com.assignment.Service;
+package com.assignment.Service.Implementation;
 
 import com.assignment.Entity.Item;
 import com.assignment.Entity.Packet;
 import com.assignment.Repository.PacketRepository;
+import com.assignment.Service.IPacketService;
+import com.assignment.Service.ISerialNumberService;
 import com.assignment.Utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class responsible for managing packets associated with items.
+ * Implements the IPacketService interface.
+ */
 @Service
 @RequiredArgsConstructor
-public class PacketService {
+public class PacketService implements IPacketService {
 
     private final PacketRepository packetRepository;
-    private final SerialNumberService serialNumberService;
+    private final ISerialNumberService serialNumberService;
 
     /**
      * Generates packets for the given item based on its quantity and saves them to the repository.

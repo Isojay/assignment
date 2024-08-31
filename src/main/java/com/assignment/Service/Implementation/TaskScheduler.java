@@ -1,7 +1,11 @@
-package com.assignment.Service;
+package com.assignment.Service.Implementation;
 
 import com.assignment.DTO.ItemDTO;
 import com.assignment.Entity.Item;
+import com.assignment.Service.IItemService;
+import com.assignment.Service.INotificationService;
+import com.assignment.Service.IPacketService;
+import com.assignment.Service.ITaskScheduler;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +27,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 @RequiredArgsConstructor
 public class TaskScheduler implements ITaskScheduler {
 
-    private final ItemService itemService;
-    private final PacketService packetService;
-    private final NotificationService notificationService;
+    private final IItemService itemService;
+    private final IPacketService packetService;
+    private final INotificationService notificationService;
 
     // Queue to hold purchase tasks to be processed
     private final BlockingQueue<ItemDTO> taskQueue = new LinkedBlockingQueue<>();
