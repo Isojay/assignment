@@ -177,6 +177,7 @@ Replace placeholders with your actual credentials.
 
 The project is deployed on Render using Docker. You can view the live demo and explore the API documentation using Swagger [here](https://assignment-y5o7.onrender.com/swagger-ui/index.html#/).
 
+**Note:** Since the application is deployed on a free instance on Render, it may take 1-2 minutes for the link to open as the application restarts when it receives activity.
 ## Thank You.
 
 ##

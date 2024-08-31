@@ -19,7 +19,11 @@ import java.util.Objects;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Handle validation exceptions
+    /**
+     * Handle validation exceptions, including those where the input value
+     * does not match the expected format or constraints.
+     */
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ResponseDTO> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -37,7 +41,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    // Handle JSON parsing exceptions
+    /**
+     * Handle JSON parsing exceptions
+     *
+     * This is primarily designed to handle validation exceptions, including
+     * specific cases such as enum type mismatches, where the provided value
+     * does not match the declared enum values (e.g., PackingType in ItemDTO).
+     */
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ResponseDTO> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
