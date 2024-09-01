@@ -5,7 +5,7 @@ import com.assignment.Entity.Item;
 import com.assignment.Service.IItemService;
 import com.assignment.Service.INotificationService;
 import com.assignment.Service.IPacketService;
-import com.assignment.Service.ITaskScheduler;
+import com.assignment.Service.IPurchaseScheduler;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * The TaskScheduler class is responsible for processing item purchase tasks.
+ * The PurchaseScheduler class is responsible for processing item purchase tasks.
  * It manages the received purchase tasks in queue, processes them one by one
  * in the order they are received, and coordinates the various services needed
  * to complete the purchase.
@@ -25,7 +25,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TaskScheduler implements ITaskScheduler {
+public class PurchaseScheduler implements IPurchaseScheduler {
 
     private final IItemService itemService;
     private final IPacketService packetService;
@@ -38,7 +38,7 @@ public class TaskScheduler implements ITaskScheduler {
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     /**
-     * Initializes the TaskScheduler by starting the queue processing
+     * Initializes the PurchaseScheduler by starting the queue processing
      * task in a separate thread.
      * <p>
      * This method is automatically called after the bean is created

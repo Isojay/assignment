@@ -3,12 +3,12 @@ package com.assignment.Service;
 import com.assignment.DTO.ItemDTO;
 
 /**
- * The TaskScheduler class is responsible for processing item purchase tasks.
+ * The PurchaseScheduler class is responsible for processing item purchase tasks.
  * It manages the received purchase tasks in queue, processes them one by one
  * in the order they are received, and coordinates the various services needed
  * to complete the purchase.
  */
-public interface ITaskScheduler {
+public interface IPurchaseScheduler {
 
     /**
      * Adds a new purchase task to the queue for processing.

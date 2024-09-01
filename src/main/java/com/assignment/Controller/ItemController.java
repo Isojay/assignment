@@ -2,7 +2,7 @@ package com.assignment.Controller;
 
 import com.assignment.DTO.ItemDTO;
 import com.assignment.Service.IItemService;
-import com.assignment.Service.ITaskScheduler;
+import com.assignment.Service.IPurchaseScheduler;
 import com.assignment.Utils.ResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api/items")
 public class ItemController {
 
-    private final ITaskScheduler taskScheduler;
+    private final IPurchaseScheduler purchaseScheduler;
     private final IItemService itemService;
 
     @PostMapping("/purchase")
@@ -28,7 +28,7 @@ public class ItemController {
         try {
 
             log.info("Purchasing item {}", item);
-            taskScheduler.addPurchaseToQueue(item);
+            purchaseScheduler.addPurchaseToQueue(item);
 
             responseDTO = ResponseDTO.customResponseDTO(
                     HttpStatus.OK,
