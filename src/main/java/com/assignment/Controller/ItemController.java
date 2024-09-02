@@ -23,7 +23,7 @@ public class ItemController {
     private final IItemService itemService;
 
     @PostMapping("/purchase")
-    public ResponseEntity<ResponseDTO> purchaseItem(@Valid @RequestBody ItemDTO item) {
+    public ResponseEntity<ResponseDTO> purchaseItem(@Valid @RequestBody List<ItemDTO> item) {
         ResponseDTO responseDTO;
         try {
 

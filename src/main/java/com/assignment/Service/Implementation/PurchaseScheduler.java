@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,7 +33,7 @@ public class PurchaseScheduler implements IPurchaseScheduler {
     private final INotificationService notificationService;
 
     // Queue to hold purchase tasks to be processed
-    private final BlockingQueue<ItemDTO> taskQueue = new LinkedBlockingQueue<>();
+    private final BlockingQueue<List<ItemDTO>> taskQueue = new LinkedBlockingQueue<>();
 
     // Executor service to manage the asynchronous processing of the task queue
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -56,12 +57,12 @@ public class PurchaseScheduler implements IPurchaseScheduler {
      * @throws IllegalStateException if the task could not be added to the queue.
      */
     @Override
-    public void addPurchaseToQueue(ItemDTO itemDTO) {
+    public void addPurchaseToQueue(List<ItemDTO> itemDTO) {
         boolean status = taskQueue.offer(itemDTO);
         if (status) {
-            log.info("Item : {} added to queue.", itemDTO.getUniqueCode());
+            log.info("Purchase added to queue.");
         } else {
-            log.warn("Item : {} was not added to queue.", itemDTO.getUniqueCode());
+            log.warn("Purchase was not added to queue.");
             throw new IllegalStateException("Failed to add item to the queue.");
         }
     }
@@ -77,16 +78,19 @@ public class PurchaseScheduler implements IPurchaseScheduler {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 // Take the next item from the queue for processing
-                ItemDTO itemDTO = taskQueue.take();
+                List<ItemDTO> itemDTOList = taskQueue.take();
 
                 // Send notification that processing has started
-                notificationService.sendNotification("Purchase processing for item: " + itemDTO.getUniqueCode(),itemDTO.getEmail());
+                notificationService.sendNotification("Purchase processing initiated : " ,null);
 
-                // Perform the purchase processing
-                serviceCall(itemDTO);
+                for(ItemDTO itemDTO : itemDTOList) {
+
+                    // Perform the purchase processing
+                    serviceCall(itemDTO);
+                }
 
                 // Send notification that processing has completed
-                notificationService.sendNotification("Purchase processed for item: " + itemDTO.getUniqueCode(),itemDTO.getEmail());
+                notificationService.sendNotification("Purchase processed. " ,null);
             } catch (InterruptedException e) {
                 // Handle thread interruption
                 Thread.currentThread().interrupt();
